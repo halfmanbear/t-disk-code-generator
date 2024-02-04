@@ -112,7 +112,7 @@ def main():
     print(f"Binary String before padding: {binary_string}")
 
     # Ensure binary_string is 16 bits long
-    total_length = 16
+    total_length = 17
 
     if len(binary_string) < total_length:
         binary_pad = binary_string.ljust(total_length, '0')
@@ -125,10 +125,13 @@ def main():
     reversed_binary_pad = binary_pad[::-1]
     print(f"Reversed Binary String: {reversed_binary_pad}")
 
-   # Check if the reversed binary starts with '00' and pad with '0' if necessary
+     # Check if the padded binary ends with '00' and set pad value to '0'
     if binary_pad.endswith('00'):
         pad = '0'
-        reversed_binary_pad = reversed_binary_pad[:-1] 
+        # Calculate the minimum length to maintain 15 bits
+        min_length = max(len(reversed_binary_pad) - 2, 15)
+        # Remove trailing '0's up to the minimum length
+        reversed_binary_pad = reversed_binary_pad[:min_length]
     else:
         pad = ''
 
