@@ -66,34 +66,87 @@ def calculate_check_digit(code):
     total = (even_sum * 3) + odd_sum
     return (10 - total % 10) % 10
 
+def reverse_bits(binary_value):
+    return binary_value[::-1]
+
 def main():
+
     temperature_options = {"0": "00", "1": "01", "2": "10", "3": "11"}
+    size_options = {"0": "0", "1": "1"}
     charge_options = {"0": "00", "1": "01", "2": "10", "3": "11"}
     volume_options = {str(i): format(i, '04b') for i in range(16)}
     flow_rate_options = {str(i): format(i, '03b') for i in range(8)}
     purge_options = {"0": "00", "1": "01", "2": "10", "3": "11"}
 
+    # User input collection
     temperature = get_user_input("Enter Water Temperature (0=cold, 1=warm, 2=83°C, 3=93°C): ", temperature_options)
+    size = get_user_input("Enter Size (0=Standard, 1=Large): ", size_options)
     charge = get_user_input("Enter Cartridge Charge (0=fast with soak, 1=fast without soak, 2=slow with soak, 3=slow without soak): ", charge_options)
     volume = get_user_input("Enter Beverage Volume (0=50ml, ..., 15=300ml): ", volume_options)
     flow_rate = get_user_input("Enter Flow Rate (0=30%, ..., 7=100%): ", flow_rate_options)
     purge = get_user_input("Enter Purge (0=slow/short, 1=slow/long, 2=fast/short, 3=fast/long): ", purge_options)
 
-    binary_string = temperature + charge + volume + flow_rate + purge
-    decimal_value = int(binary_string, 2)
+    print(f"temperature: {temperature}")
+    print(f"size: {size}")
+    print(f"charge: {charge}")
+    print(f"volume: {volume}")
+    print(f"flow_rate: {flow_rate}")
+    print(f"purge: {purge}")
 
-    # Ensure the decimal value is 5 digits by prepending '0' if necessary
-    decimal_str = str(decimal_value)
-    if len(decimal_str) < 5:
-        decimal_str = '0' * (5 - len(decimal_str)) + decimal_str
-          
-    # Add check digit
-    check_digit = calculate_check_digit(decimal_str)
-    decimal_str_with_check = decimal_str + str(check_digit)
-
-    print(f"Binary String: {binary_string}")
+    temperature = reverse_bits(temperature)
+    size = reverse_bits(size)
+    charge = reverse_bits(charge)
+    volume = reverse_bits(volume)
+    flow_rate = reverse_bits(flow_rate)
+    purge = reverse_bits(purge)
     
-    print(f"Decimal Value with Check Digit: {decimal_str}")
+    print(f"rev temperature: {temperature}")
+    print(f"rev size: {size}")
+    print(f"rev charge: {charge}")
+    print(f"rev volume: {volume}")
+    print(f"rev flow_rate: {flow_rate}")
+    print(f"rev purge: {purge}")
+
+    binary_string = purge + flow_rate + volume + charge + size + temperature
+    
+    print(f"Binary String before padding: {binary_string}")
+
+    # Ensure binary_string is 16 bits long
+    total_length = 16
+
+    if len(binary_string) < total_length:
+        binary_pad = binary_string.ljust(total_length, '0')
+    else:
+        binary_pad = binary_string
+
+    print(f"Binary with padding: {binary_pad}")
+
+    # Reverse the binary string
+    reversed_binary_pad = binary_pad[::-1]
+    print(f"Reversed Binary String: {reversed_binary_pad}")
+
+   # Check if the reversed binary starts with '00' and pad with '0' if necessary
+    if binary_pad.endswith('00'):
+        pad = '0'
+        reversed_binary_pad = reversed_binary_pad[:-1] 
+    else:
+        pad = ''
+
+    print(f"Reversed Binary String with condition 0 before: {reversed_binary_pad}")
+
+    decimal_value = str(int(reversed_binary_pad, 2))
+
+    decimal_value_with_pad = pad + decimal_value
+
+    print(f"Decimal Value before padding: {decimal_value}")
+    print(f"Decimal Value after padding: {decimal_value_with_pad}")
+
+    # Add check digit and format the final string
+    check_digit = calculate_check_digit(decimal_value_with_pad)
+    decimal_str_with_check = decimal_value_with_pad + str(check_digit)
+
+    # Output and barcode generation
+
     print(f"Decimal Value with Check Digit: {decimal_str_with_check}")
 
     # Define the path for saving the barcode image
