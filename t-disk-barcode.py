@@ -6,155 +6,112 @@ def get_user_input(prompt, options):
         input_value = input(prompt)
         if input_value in options:
             return options[input_value]
-        else:
-            print("Invalid input. Please try again.")
+        print("Invalid input. Please try again.")
 
-def add_bar(draw, x, y, thick):
+def add_bar(draw, x, y, thick, height=50):
     width = 8 if thick else 4
-    draw.rectangle([x, y, x + width, y + 50], fill="black")
+    draw.rectangle([x, y, x + width, y + height], fill="black")
     return x + width
 
-def add_space(x, thick):
-    return x + (8 if thick else 4)
-
 def generate_barcode(code, img_path):
-    
     bars = [
-    [0, 0, 1, 1, 0],
-    [1, 0, 0, 0, 1],
-    [0, 1, 0, 0, 1],
-    [1, 1, 0, 0, 0],
-    [0, 0, 1, 0, 1],
-    [1, 0, 1, 0, 0],
-    [0, 1, 1, 0, 0],
-    [0, 0, 0, 1, 1],
-    [1, 0, 0, 1, 0],
-    [0, 1, 0, 1, 0]
+        [0, 0, 1, 1, 0], [1, 0, 0, 0, 1], [0, 1, 0, 0, 1], [1, 1, 0, 0, 0],
+        [0, 0, 1, 0, 1], [1, 0, 1, 0, 0], [0, 1, 1, 0, 0], [0, 0, 0, 1, 1],
+        [1, 0, 0, 1, 0], [0, 1, 0, 1, 0]
     ]
 
-    # Create an image
     img = Image.new('1', (200, 50), "white")
     draw = ImageDraw.Draw(img)
-    x = 0
+    x = 10  # Start with a margin
+
+    # Simplified pattern addition
+    def add_pattern(sequence):
+        nonlocal x
+        for thick in sequence:
+            x = add_bar(draw, x, 0, thick) + 4  # Adding space after each bar directly
 
     # Run-in pattern
-    x = add_bar(draw, x, 0, 0)
-    x = add_space(x, 0)
-    x = add_bar(draw, x, 0, 0)
-    x = add_space(x, 0)
+    add_pattern([0, 0, 0])
 
-    # Generate barcode
-    for i in range(0, len(code), 2):
-        first_digit = int(code[i])
-        second_digit = int(code[i + 1]) if i + 1 < len(code) else 0
-
-        for j in range(5):
-            x = add_bar(draw, x, 0, bars[first_digit][j])
-            x = add_space(x, bars[second_digit][j])
+    # Barcode generation
+    for digit in code:
+        for thick in bars[int(digit)]:
+            x = add_bar(draw, x, 0, thick) + 4
 
     # Run-out pattern
-    x = add_bar(draw, x, 0, 1)
-    x = add_space(x, 0)
-    x = add_bar(draw, x, 0, 0)
+    add_pattern([1, 0, 1])
 
     img.save(img_path)
     print(f"Barcode generated and saved as {img_path}")
 
 def calculate_check_digit(code):
-    even_sum = sum(int(code[i]) for i in range(0, len(code), 2))
-    odd_sum = sum(int(code[i]) for i in range(1, len(code), 2))
-    total = (even_sum * 3) + odd_sum
-    return (10 - total % 10) % 10
-
-def reverse_bits(binary_value):
-    return binary_value[::-1]
+    sum_ = sum(int(digit) * (3 if idx % 2 == 0 else 1) for idx, digit in enumerate(code))
+    return (10 - sum_ % 10) % 10
 
 def main():
+    # Using dictionary comprehensions to simplify options creation
+    options = {
+        "temperature": {"0": "00", "1": "01", "2": "10", "3": "11"},
+        "size": {"0": "0", "1": "1"},
+        "charge": {"0": "00", "1": "01", "2": "10", "3": "11"},
+        "volume": {str(i): format(i, '04b') for i in range(16)},
+        "flow_rate": {str(i): format(i, '03b') for i in range(8)},
+        "purge": {"0": "00", "1": "01", "2": "10", "3": "11"},
+        "misc": {"0": "", "1": "1", "2": "11"},
+    }
 
-    temperature_options = {"0": "00", "1": "01", "2": "10", "3": "11"}
-    size_options = {"0": "0", "1": "1"}
-    charge_options = {"0": "00", "1": "01", "2": "10", "3": "11"}
-    volume_options = {str(i): format(i, '04b') for i in range(16)}
-    flow_rate_options = {str(i): format(i, '03b') for i in range(8)}
-    purge_options = {"0": "00", "1": "01", "2": "10", "3": "11"}
+    prompts = {
+        "temperature": "Enter Water Temperature (0=cold, 1=warm, 2=83°C, 3=93°C): ",
+        "size": "Enter Size (0=Standard, 1=Large): ",
+        "charge": "Enter Cartridge Charge (0=fast with soak, 1=fast without soak, 2=slow with soak, 3=slow without soak): ",
+        "volume": "Enter Beverage Volume (0=50ml, ..., 15=300ml): ",
+        "flow_rate": "Enter Flow Rate (0=30%, ..., 7=100%): ",
+        "purge": "Enter Purge (0=slow/short, 1=slow/long, 2=fast/short, 3=fast/long): ",
+        "misc": "Enter Misc: 0, 1 or 2"
+    }
 
-    # User input collection
-    temperature = get_user_input("Enter Water Temperature (0=cold, 1=warm, 2=83°C, 3=93°C): ", temperature_options)
-    size = get_user_input("Enter Size (0=Standard, 1=Large): ", size_options)
-    charge = get_user_input("Enter Cartridge Charge (0=fast with soak, 1=fast without soak, 2=slow with soak, 3=slow without soak): ", charge_options)
-    volume = get_user_input("Enter Beverage Volume (0=50ml, ..., 15=300ml): ", volume_options)
-    flow_rate = get_user_input("Enter Flow Rate (0=30%, ..., 7=100%): ", flow_rate_options)
-    purge = get_user_input("Enter Purge (0=slow/short, 1=slow/long, 2=fast/short, 3=fast/long): ", purge_options)
+    decimal_prepend_zero = ''
 
-    print(f"temperature: {temperature}")
-    print(f"size: {size}")
-    print(f"charge: {charge}")
-    print(f"volume: {volume}")
-    print(f"flow_rate: {flow_rate}")
-    print(f"purge: {purge}")
+    # Collecting user inputs
+    inputs = {key: get_user_input(prompts[key], options[key]) for key in prompts}
+    binary_string = ''.join(inputs[key] for key in reversed(['misc','purge', 'flow_rate', 'volume', 'charge', 'size', 'temperature']))
 
-    temperature = reverse_bits(temperature)
-    size = reverse_bits(size)
-    charge = reverse_bits(charge)
-    volume = reverse_bits(volume)
-    flow_rate = reverse_bits(flow_rate)
-    purge = reverse_bits(purge)
-    
-    print(f"rev temperature: {temperature}")
-    print(f"rev size: {size}")
-    print(f"rev charge: {charge}")
-    print(f"rev volume: {volume}")
-    print(f"rev flow_rate: {flow_rate}")
-    print(f"rev purge: {purge}")
-
-    binary_string = purge + flow_rate + volume + charge + size + temperature
-    
     print(f"Binary String before padding: {binary_string}")
 
-    # Ensure binary_string is 16 bits long
-    total_length = 17
-
-    if len(binary_string) < total_length:
-        binary_pad = binary_string.ljust(total_length, '0')
+    # Padding
+    if int(binary_string, 2) < 1000:
+        binary_with_padding = '1' + binary_string.rjust(17 - 1, '0')
     else:
-        binary_pad = binary_string
+        binary_with_padding = binary_string.rjust(17, '0')
 
-    print(f"Binary with padding: {binary_pad}")
+    print(f"Binary String after padding: {binary_with_padding}")
+        
+    # Trimming and determining decimal_prepend_zero
+    if binary_with_padding.startswith('00'):
+        decimal_prepend_zero = '0' if not binary_with_padding.endswith('1') else ''
+        min_length = max(len(binary_with_padding) - 2, 16)
+        for i in range(len(binary_with_padding) - 1, min_length - 1, -1):
+            if binary_with_padding[i] == '0':
+                binary_with_padding = binary_with_padding[:i]
+            else:
+                break
 
-    # Reverse the binary string
-    reversed_binary_pad = binary_pad[::-1]
-    print(f"Reversed Binary String: {reversed_binary_pad}")
+    print(f"Binary String after Trim: {binary_with_padding}")
 
-     # Check if the padded binary ends with '00' and set pad value to '0'
-    if binary_pad.endswith('00'):
-        pad = '0'
-        # Calculate the minimum length to maintain 15 bits
-        min_length = max(len(reversed_binary_pad) - 2, 15)
-        # Remove trailing '0's up to the minimum length
-        reversed_binary_pad = reversed_binary_pad[:min_length]
-    else:
-        pad = ''
+    # Convert to decimal and prepend '0' if necessary
+    decimal_value = str(int(binary_with_padding, 2))
+    decimal_value_after_prepend = decimal_prepend_zero + decimal_value
 
-    print(f"Reversed Binary String with condition 0 before: {reversed_binary_pad}")
+    # Calculate check digit and append
+    decimal_check_digit = calculate_check_digit(decimal_value_after_prepend)
+    decimal_str_with_check = decimal_value_after_prepend + str(decimal_check_digit)
 
-    decimal_value = str(int(reversed_binary_pad, 2))
+    print(f"Decimal Value: {decimal_value}")
+    print(f"Decimal With Pad: {decimal_value_after_prepend}")
+    print(f"Decimal Value w/ Check Bit: {decimal_str_with_check}")
 
-    decimal_value_with_pad = pad + decimal_value
-
-    print(f"Decimal Value before padding: {decimal_value}")
-    print(f"Decimal Value after padding: {decimal_value_with_pad}")
-
-    # Add check digit and format the final string
-    check_digit = calculate_check_digit(decimal_value_with_pad)
-    decimal_str_with_check = decimal_value_with_pad + str(check_digit)
-
-    # Output and barcode generation
-
-    print(f"Decimal Value with Check Digit: {decimal_str_with_check}")
-
-    # Define the path for saving the barcode image
+    # Barcode generation
     img_path = os.path.join(os.getcwd(), f"barcode_{decimal_str_with_check}.png")
-
     generate_barcode(decimal_str_with_check, img_path)
 
 if __name__ == "__main__":
