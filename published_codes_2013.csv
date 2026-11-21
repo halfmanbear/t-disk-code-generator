@@ -1,35 +1,52 @@
-code
-022095
-032872
-033510
-033541
-047852
-061469
-061780
-061827
-064095
-066655
-078795
-297615
-301954
-344197
-349130
-366816
-594592
-594912
-596831
-634151
-634793
-636070
-637350
-642262
-648035
-674270
-674478
-676458
-679459
-679534
-683050
-699556
-715874
-716512
+﻿code,payload5,payload_low2,payload_bit16,source_label,brand,product_name,beverage_category,disc_role,source_listed_ml,source_size_flag,source_cold_marker,market,source_date,source_url,notes
+022095,02209,01,0,Costa Espresso for Capp. & Latte,Costa,Espresso for Cappuccino & Latte,coffee,coffee_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Original abbreviated product name retained in source_label
+032872,03287,11,0,TWINING’s English Breakfast,Twinings,English Breakfast,tea,tea_disc,195,S,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+033510,03351,11,0,TWINING’s Earl Grey,Twinings,Earl Grey,tea,tea_disc,200,S,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+033510,03351,11,0,TWINING’s Darjeeling,Twinings,Darjeeling,tea,tea_disc,,S,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+033541,03354,10,0,TWINING’s Waldfruchttee,Twinings,Waldfruchttee,tea,tea_disc,,S,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+047852,04785,01,0,Suchard Hot Chocolate,Suchard,Hot Chocolate,chocolate,chocolate_disc,195,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+061469,06146,10,0,ICE DISC Espresso ❄,,ICE DISC Espresso,coffee,ice_disc,,,yes,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Snowflake appears in source listing
+061469,06146,10,0,ICE DISC Cappucino ❄,,ICE DISC Cappucino,coffee,ice_disc,,,yes,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Snowflake appears in source listing; original spelling retained
+061469,06146,10,0,ICE DISC Chocolate ❄,,ICE DISC Chocolate,chocolate,ice_disc,,,yes,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Snowflake appears in source listing
+061780,06178,10,0,Jacobs Espresso,Jacobs,Espresso,coffee,coffee_disc,60,S,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+061780,06178,10,0,Jacobs Espresso für Latte Macch.,Jacobs,Espresso für Latte Macch.,coffee,coffee_disc,,S,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Source name abbreviated
+061780,06178,10,0,CARTE NOIRE Espresso Classic,Carte Noire,Espresso Classic,coffee,coffee_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+061780,06178,10,0,CARTE NOIRE Espresso Intense,Carte Noire,Espresso Intense,coffee,coffee_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+061827,06182,10,0,Milch für Cadbury,,Milk for Cadbury,chocolate,milk_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Brand refers to paired product; not established as milk-disc manufacturer
+061827,06182,10,0,"Milch für Milka, Marabou & Freia",,Milk for Milka / Marabou / Freia,chocolate,milk_disc,,S,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Names refer to paired products; not established as milk-disc manufacturers
+061827,06182,10,0,Milch für Costa Cappuccino,,Milk for Costa Cappuccino,coffee,milk_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Costa denotes paired beverage; not established as milk-disc manufacturer
+061827,06182,10,0,Milch für CARTE NOIRE Cappu.,,Milk for Carte Noire Cappu.,coffee,milk_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Carte Noire denotes paired beverage; source name abbreviated
+064095,06409,01,0,Jacobs Caffè Crema,Jacobs,Caffè Crema,coffee,coffee_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+066655,06665,01,0,Milka,Milka,Milka,chocolate,chocolate_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Category inferred from product context
+066655,06665,01,0,OREO,Oreo,Oreo,chocolate,chocolate_disc,,S,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Category inferred from product context
+066655,06665,01,0,Cadbury,Cadbury,Cadbury,chocolate,chocolate_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Category inferred from product context
+078795,07879,11,0,Service-Disc ⚒,,Service Disc,service,service_disc,,–,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Non-beverage disc; gear symbol in source listing
+297615,29761,01,0,Jacobs Caffè Crema XL,Jacobs,Caffè Crema XL,coffee,coffee_disc,215,S,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+297615,29761,01,0,CARTE NOIRE Petit Déjeuner,Carte Noire,Petit Déjeuner,coffee,coffee_disc,215,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+297615,29761,01,0,Costa Americano,Costa,Americano,coffee,coffee_disc,220,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+297615,29761,01,0,Kenco Medium Roast,Kenco,Medium Roast,coffee,coffee_disc,195,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+301954,30195,11,0,CARTE NOIRE Lungo Intenso,Carte Noire,Lungo Intenso,coffee,coffee_disc,120,L,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+344197,34419,11,0,Jacobs Krönung Verwöhnkanne,Jacobs,Krönung Verwöhnkanne,coffee,coffee_disc,350,L,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+349130,34913,01,0,Tea Bar Peach Iced Tea ❄,Tea Bar,Peach Iced Tea,tea,tea_disc,325,,yes,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Snowflake appears in source listing
+366816,36681,01,0,Milch für OREO,,Milk for Oreo,chocolate,milk_disc,,S,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Oreo denotes paired product; not established as milk-disc manufacturer
+594592,59459,11,0,Second Cup Espresso Forte,Second Cup,Espresso Forte,coffee,coffee_disc,65,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+594912,59491,11,0,Gevalia Kaffe Espresso,Gevalia,Kaffe Espresso,coffee,coffee_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+596831,59683,11,0,Starbucks Espresso Roast,Starbucks,Espresso Roast,coffee,coffee_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+634151,63415,11,0,Cappucino Primo Milk Creamer,,Cappucino Primo Milk Creamer,coffee,creamer_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Original spelling retained
+634793,63479,11,0,Milch für Cappuccino,,Milk for Cappuccino,coffee,milk_disc,215,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+636070,63607,11,0,Milch für Latte (Pulver?),,Milk for Latte (Pulver?),coffee,milk_disc,250,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Question mark is from source; composition unverified
+637350,63735,11,0,Milch für Latte Macchiato,,Milk for Latte Macchiato,coffee,milk_disc,,L,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+637350,63735,11,0,Milch für Costa Caramel Latte,,Milk for Costa Caramel Latte,coffee,milk_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Costa denotes paired beverage; not established as milk-disc manufacturer
+642262,64226,10,0,Gevalia Kaffe Signature Blend,Gevalia,Kaffe Signature Blend,coffee,coffee_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+648035,64803,11,0,Maxwell House Morning,Maxwell House,Morning,coffee,coffee_disc,354,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+674270,67427,11,1,Gevalia Kaffe Caramel Espresso,Gevalia,Kaffe Caramel Espresso,coffee,coffee_disc,60,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+674478,67447,11,1,Milch für Chai Latte,,Milk for Chai Latte,tea,milk_disc,,L,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+676458,67645,01,1,Second Cup Chocolate Syrup,Second Cup,Chocolate Syrup,chocolate,syrup_disc,195,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+676458,67645,01,1,Corner Coffee Pepp. Choc. Syrup,Corner Coffee,Pepp. Choc. Syrup,chocolate,syrup_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Source name abbreviated
+679459,67945,01,1,Gevalia Dark Breakfast Blend,Gevalia,Dark Breakfast Blend,coffee,coffee_disc,,L,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+679534,67953,01,1,Gevalia Dark Italian Roast,Gevalia,Dark Italian Roast,coffee,coffee_disc,,L,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+679534,67953,01,1,Second Cup Paradiso,Second Cup,Paradiso,coffee,coffee_disc,,L,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+683050,68305,01,1,Nabob Breakfast Du Matin,Nabob,Breakfast Du Matin,coffee,coffee_disc,354,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+699556,69955,11,1,Tazo Awake Black Tea,Tazo,Awake Black Tea,tea,tea_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+715874,71587,11,1,TWINING’s Chai Latte,Twinings,Chai Latte,tea,tea_disc,,,,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,
+716512,71651,11,1,ICE DISC Tea ❄,,ICE DISC Tea,tea,ice_disc,,,yes,,2013-09-08,https://blog.mbirth.uk/2013/09/08/tassimo-barcodes-de.html,Snowflake appears in source listing
